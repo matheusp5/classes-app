@@ -1,18 +1,22 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import DayProps from "../models/DayProps";
 
 
-export default function Day({day, classes}: any) {
-  return <View>
-    <Text style={s.day}>{day}</Text>
-    {classes.map((e: any, i: number) => {
-      return <Text key={i}>{e}</Text>
-    })}
+export default function Day({dayName, classes}: DayProps) {
+  return <View style={s.day}>
+    <Text style={s.dayName}>{dayName}</Text>
+    {classes.map((className: string, i: number) => <Text key={i}>{className}</Text>)}
   </View>
 }
 
 const s = StyleSheet.create({
   day: {
-    fontSize: 20
-  }
+    marginVertical: 5
+  },
+  dayName: {
+    fontSize: 20,
+    fontWeight: "bold",
+  },
+
 })
