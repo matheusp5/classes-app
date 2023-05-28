@@ -1,9 +1,11 @@
 import React from "react";
-import {Text} from "react-native"
+import Home from "./pages/Home";
+import { View } from "react-native";
+import { StatusBar } from "expo-status-bar";
 
 export default function App() {
-  return (
-    <Text>Teste</Text>
-  );
+  return <View>
+      <Home />
+    </View>
 }
 

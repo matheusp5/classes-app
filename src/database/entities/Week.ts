@@ -1,3 +1,4 @@
+import "reflect-metadata"
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm"
 import { WeekDayEnum } from "../../WeekDayEnum"
 
@@ -12,6 +13,6 @@ export class Week  {
     })
     day: WeekDayEnum
 
-    @Column('varchar', {array: true})
+    @Column('json')
     classes: string[]
 }

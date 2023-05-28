@@ -1,36 +1,26 @@
 import { Repository } from "typeorm";
-import { WeekDayEnum } from "../WeekDayEnum";
 import { Week } from "../database/entities/Week";
-import SqliteSource from "../database/SqliteSource";
+import MysqlSource from "../database/MysqlSource";
+import { WeekDayEnum } from "../WeekDayEnum";
 
 class ClassesService { 
 
   private readonly weekRepository: Repository<Week>
-  constructor() { this.weekRepository = SqliteSource.getRepository(Week) }
+  constructor() { this.weekRepository = MysqlSource.getRepository(Week) }
 
-  getDay(): WeekDayEnum {
+  getDay(): number {
     const today = new Date()
-    const weekDay = today.getDay();
-    switch (weekDay) {
-      case 1:
-        return WeekDayEnum.Segunda
-      case 2:
-        return WeekDayEnum.Terca
-      case 3:
-        return WeekDayEnum.Quarta
-      case 4:
-        return WeekDayEnum.Quinta
-      case 5:
-        return WeekDayEnum.Sexta
-      case 6:
-        return WeekDayEnum.Sabado
-      default:
-        return WeekDayEnum.Domingo
-    }
+    return today.getDay();
   }
 
-  async getClasses(day: WeekDayEnum) {
-    return await this.weekRepository.find({where: {day}})
+  async getClasses(day: number) {
+    return await this.weekRepository.findOne({where: {day}})
+  }
+
+  async uptadeClass(day: WeekDayEnum, classes: string[]) {
+    return await this.weekRepository.update({day}, {
+      classes
+    })
   }
 }
 
