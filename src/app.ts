@@ -2,13 +2,10 @@ import express, { Request, Response } from "express"
 import MysqlSource from "./database/MysqlSource"
 import ClassesService from "./services/ClassesService"
 
-import { Week } from "./database/entities/Week"
-import { WeekDayEnum } from "./WeekDayEnum"
-
 const app = express()
 
 app.get("/day/:day", async (req: Request, res: Response) => {
-  const {id, day, classes}: any = await ClassesService.getClasses(Number(req.params.day))
+  const {classes}: any = await ClassesService.getClasses(Number(req.params.day))
   res.send({
     status: "success",
     content: classes
@@ -22,7 +19,6 @@ app.get("/day", async (req: Request, res: Response) => {
   const {...quinta} = await ClassesService.getClasses(Number(4))
   const {...sexta} = await ClassesService.getClasses(Number(5))
   
-
   res.send({
     status: "success",
     content: [

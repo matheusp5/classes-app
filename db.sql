@@ -1,0 +1,3 @@
+/* 
+  will run when the docker container up
+*/
