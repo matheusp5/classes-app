@@ -10,24 +10,31 @@
     "server:start": "ts-node src/app.ts"
   },
   "dependencies": {
+    "@react-native-community/masked-view": "^0.1.11",
+    "@react-navigation/native": "^6.1.6",
+    "@react-navigation/stack": "^6.3.16",
     "axios": "^1.4.0",
+    "expo": "~48.0.15",
+    "expo-device": "~5.2.1",
+    "expo-notifications": "~0.18.1",
+    "expo-status-bar": "~1.4.4",
     "express": "^4.18.2",
     "mysql2": "^3.3.3",
-    "reflect-metadata": "^0.1.13",
-    "typeorm": "^0.3.16",
-
     "react": "18.2.0",
     "react-native": "0.71.8",
-    "expo-device": "~5.2.1",
-    "expo": "~48.0.15",
-    "expo-notifications": "~0.18.1",
-    "expo-status-bar": "~1.4.4"
+    "react-native-gesture-handler": "~2.9.0",
+    "react-native-reanimated": "~2.14.4",
+    "react-native-safe-area-context": "4.5.0",
+    "react-native-screens": "~3.20.0",
+    "react-navigation": "^4.4.4",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.16"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.0",
     "@types/axios": "^0.14.0",
     "@types/express": "^4.17.17",
     "@types/node": "^20.2.5",
-    "@babel/core": "^7.20.0",
     "@types/react": "~18.0.14",
     "typescript": "^4.9.4"
   },

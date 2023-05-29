@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native"; 
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native"; 
 import React, { useState, useEffect } from "react";
 import Day from "./components/Day";
 import Days from "./utils/Days";
@@ -50,21 +50,25 @@ async function push() {
   return token;
 }
 
-export default function Home() {   
+export default function Home({navigation}: any) {   
   const [classes, setClasses] = useState<string[][]>([]);
   useEffect(() => {
     getClassesForWeek().then(result => setClasses(result))
   },[]);
 
   return (
-    <View>
+    <ScrollView>
       <Text style={s.title}>
         Aulas
       </Text>
       <Container>
-        {classes.map((classes: string[], i: number) => <Day key={i} dayName={Days[i+1]} classes={classes}/>)}
+        {classes.map((classes: string[], i: number) => (
+          <TouchableOpacity key={i} onPress={() => navigation.push("Atualizar", {day: i+1, classes})}>
+            <Day dayName={Days[i+1]} classes={classes}/>
+          </TouchableOpacity>
+        ))}
       </Container>
-    </View>
+    </ScrollView>
   )
 }
 

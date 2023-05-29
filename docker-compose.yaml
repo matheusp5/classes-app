@@ -3,7 +3,7 @@ services:
   db:
     build: 
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.mysql
     ports:
       - '3306:3306'
     volumes:
@@ -12,3 +12,15 @@ services:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       timeout: 20s
       retries: 10
+
+  app:
+     build: 
+       context: .
+       dockerfile: Dockerfile.app
+     ports:
+       - '3030:3030'
+    
+     depends_on:
+       db:
+         condition: service_healthy
+  

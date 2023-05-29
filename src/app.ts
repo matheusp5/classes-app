@@ -16,10 +16,9 @@ app.get("/day/:day", async (req: Request, res: Response) => {
 })
 
 app.patch("/day/:day", async (req: Request, res: Response) => {
-  const result = await ClassesService.uptadeClass(Number(req.params.day), req.body.classes)
+  await ClassesService.uptadeClass(Number(req.params.day), req.body.classes)
   res.send({
-    status: "success",
-    content: result
+    status: "success"
   })
 })
 
@@ -53,30 +52,8 @@ MysqlSource.initialize().then(async () => {
       const result: any = await ClassesService.getClasses(day)
       const classes: string[] = result.classes
       setInterval(async () => {
-        console.log(await NotificationService.sendNotify("ExponentPushToken[GvaeckMGJJobwr6bJbKXvF]", "Arrume a mochila! " + Days[day], classes.join("\n")))
+        //console.log(await NotificationService.sendNotify("ExponentPushToken[GvaeckMGJJobwr6bJbKXvF]", "Arrume a mochila! " + Days[day], classes.join("\n")))
       }, 3000)
     }
   })
 })
-
-  // const repo = MysqlSource.getRepository(Week)
-  // repo.save({
-  //   day: WeekDayEnum.Segunda,
-  //   classes: ['História', 'Inglês', 'Biologia', 'Física', 'Geografia', 'Matemática', 'Artes']
-  // })
-  // await repo.save({
-  //   day: 2,
-  //   classes: ['Matemática', 'Português', 'Física']
-  // })
-  // await repo.save({
-  //   day: 3,
-  //   classes: ['Produção de texto', 'Química', 'Português']
-  // })
-  // await repo.save({
-  //   day: 4,
-  //   classes: ['Inglês', 'Projeto de vida', 'Empreendedorismo', 'Português']
-  // })
-  // await repo.save({
-  //   day: 5,
-  //   classes: ['Matemática', 'Artes', 'Inglês', 'Geografia', 'Química']
-  // })
